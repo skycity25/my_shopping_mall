@@ -42,12 +42,34 @@ class Cart
     total = items.inject(0) { |s, item| s + item.price }
 
     # Use Strategy Pattern!
-    total = total * 0.9 if xmas?
+    # total = total * 0.9 if xmas?
+    # total = discount if event?
+
+    if xmas?
+      total = total * 0.9
+    elsif discount?
+      if total < 1000
+        total = total
+      else
+        total = total - (total/1000)*100
+      end
+    elsif xmas? && discount?
+      total = total * 0.9
+    end
+    
     total
+
   end
+
+  
 
   private
   def xmas?
     Time.now.month == 12 and Time.now.day == 25
   end
+
+  def discount?
+    true
+  end
+  
 end

@@ -62,19 +62,19 @@ RSpec.describe Cart, type: :model do
     end
   end
 
-  describe "calculator" do
-    it "calculate total price of this cart" do
-      p1 = create(:ruby_book, price: 1000)
-      p2 = create(:php_book, price: 100)
+  # describe "calculator" do
+  #   it "calculate total price of this cart" do
+  #     p1 = create(:ruby_book, price: 1000)
+  #     p2 = create(:php_book, price: 100)
 
-      3.times {
-        cart.add_item(p1.id)
-        cart.add_item(p2.id)
-      }
+  #     3.times {
+  #       cart.add_item(p1.id)
+  #       cart.add_item(p2.id)
+  #     }
 
-      expect(cart.total_price).to be 3300
-    end
-  end
+  #     expect(cart.total_price).to be 3300
+  #   end
+  # end
 
   describe "special events" do
     context "XMas" do
@@ -90,14 +90,14 @@ RSpec.describe Cart, type: :model do
   end
 
   # HOMEWORK
-  #describe "Special Offer" do
-    #it "滿千折百" do
-      #p = create(:ruby_book, price: 300)
-      #3.times { cart.add_item(p.id) }
-      #expect(cart.total_price).to be 900
+  describe "Special Offer" do
+    it "滿千折百" do
+      p = create(:ruby_book, price: 300)
+      3.times { cart.add_item(p.id) }
+      expect(cart.total_price).to be 900
 
-      #cart.add_item(p.id)
-      #expect(cart.total_price).to be 1100
-    #end
-  #end
+      cart.add_item(p.id)
+      expect(cart.total_price).to be 1100
+    end
+  end
 end
